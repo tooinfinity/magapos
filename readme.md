@@ -14,7 +14,7 @@ and [___git___](https://git-scm.com/)  control system
 - go to [___Gitthub___](https://github.com/) website and login or register to an account
 - go to your Terminal and look for folder __Laragon__ and sub folder __www__ and run this command
 
-        git clone https://github.com/LaraTouwfiQ/magapos.git
+        git clone https://github.com/tooinfinity/magapos.git
   
   this ask to login to __bitbucket__ put you username and password 
 - wait until finiched setting up
