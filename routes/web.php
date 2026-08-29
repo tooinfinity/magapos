@@ -1,78 +1,68 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
- */
-
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ClientController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\GeneralSettingController;
+use App\Http\Controllers\Dashboard\ModeratorController;
+use App\Http\Controllers\Dashboard\MoneyBoxController;
+use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\ProviderController;
+use App\Http\Controllers\Dashboard\PurchaseController;
+use App\Http\Controllers\Dashboard\SaleController;
+use App\Http\Controllers\Dashboard\SpendingController;
+use Illuminate\Support\Facades\Route;
 
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ],
     function () {
-        /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
         Route::get('/', function () {
             return view('auth.login');
         });
+
         Auth::routes(['register' => false]);
-        Route::group(['middleware' => 'auth'], function () {
-            Route::get('/dashboard', 'Dashboard\DashboardController@index')->name(
-                'dashboard'
-            );
-            Route::resource('/moderator', 'Dashboard\ModeratorController')->except([
-                'show'
-            ]);
-            Route::get('/moderator/profile', 'Dashboard\ModeratorController@profile')->name(
-                'moderator.profile'
-            );
-            Route::resource('/category', 'Dashboard\CategoryController')->except([
-                'show'
-            ]);
-            Route::resource('/product', 'Dashboard\ProductController')->except([
-                'show'
-            ]);
-            Route::get('/searchsale', ['uses' => 'Dashboard\ProductController@searchsale', 'as' => 'product.searchsale']);
-            Route::get('/searchpurchase', ['uses' => 'Dashboard\ProductController@searchpurchase', 'as' => 'product.searchpurchase']);
-            Route::get('/addproduct', ['uses' => 'Dashboard\ProductController@addproduct', 'as' => 'product.addproduct']);
-            Route::get('/barcode', 'Dashboard\ProductController@barcode');
-            Route::put('/updateprice/{id}', 'Dashboard\ProductController@updateprice');
 
-            Route::put('/paymentdue/{id}', 'Dashboard\SaleController@paymentdue');
-            Route::put('/paymentduep/{id}', 'Dashboard\purchaseController@paymentduep');
-            Route::resource('/sale', 'Dashboard\SaleController');
-            Route::resource('/purchase', 'Dashboard\PurchaseController');
-            Route::resource('/client', 'Dashboard\ClientController')->except([
-                'show'
-            ]);
-            Route::get('/client/detail/{id}', 'Dashboard\ClientController@saledetail')->name('client.detail');
-            Route::resource('/provider', 'Dashboard\ProviderController')->except([
-                'show'
-            ]);
-            Route::get('/provider/detail/{id}', 'Dashboard\ProviderController@purchasedetail')->name('provider.detail');
+        Route::middleware('auth')->group(function () {
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-            // spending route
+            Route::resource('/moderator', ModeratorController::class)->except(['show']);
+            Route::get('/moderator/profile', [ModeratorController::class, 'profile'])->name('moderator.profile');
 
-            Route::post('/newspend', 'Dashboard\SpendingController@store');
-            Route::put('/updatespend/{id}', 'Dashboard\SpendingController@updatespend');
-            Route::resource('/spending', 'Dashboard\SpendingController')->except([
-                'show'
-            ]);
+            Route::resource('/category', CategoryController::class)->except(['show']);
 
-            // Money box route
-            Route::get('/moneybox', 'Dashboard\MoneyBoxController@index')->name('moneybox');
+            Route::resource('/product', ProductController::class)->except(['show']);
+            Route::get('/searchsale', [ProductController::class, 'searchsale'])->name('product.searchsale');
+            Route::get('/searchpurchase', [ProductController::class, 'searchpurchase'])->name('product.searchpurchase');
+            Route::get('/addproduct', [ProductController::class, 'addproduct'])->name('product.addproduct');
+            Route::get('/barcode', [ProductController::class, 'barcode']);
+            Route::put('/updateprice/{id}', [ProductController::class, 'updateprice']);
 
-            // generale Settings route
-            Route::resource('/generalsetting', 'Dashboard\GeneralSettingController')->except([
-                'show', 'update', 'destroy', 'create', 'edit'
-            ]);
+            Route::put('/paymentdue/{id}', [SaleController::class, 'paymentdue']);
+            Route::put('/paymentduep/{id}', [PurchaseController::class, 'paymentduep']);
+            Route::resource('/sale', SaleController::class);
+            Route::resource('/purchase', PurchaseController::class);
+
+            Route::resource('/client', ClientController::class)->except(['show']);
+            Route::get('/client/detail/{id}', [ClientController::class, 'saledetail'])->name('client.detail');
+
+            Route::resource('/provider', ProviderController::class)->except(['show']);
+            Route::get('/provider/detail/{id}', [ProviderController::class, 'purchasedetail'])->name('provider.detail');
+
+            Route::post('/newspend', [SpendingController::class, 'store']);
+            Route::put('/updatespend/{id}', [SpendingController::class, 'updatespend']);
+            Route::resource('/spending', SpendingController::class)->except(['show']);
+
+            Route::get('/moneybox', [MoneyBoxController::class, 'index'])->name('moneybox');
+
+            Route::resource('/generalsetting', GeneralSettingController::class)->except(['show', 'update', 'destroy', 'create', 'edit']);
         });
     }
 );
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

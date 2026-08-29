@@ -1,35 +1,24 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class ProductSale extends Migration
+return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('product_sale', function (Blueprint $table) {
-
-            $table->integer('product_id')->unsigned();
+            $table->unsignedBigInteger('product_id');
             $table->string('quantity');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('sale_id')->unsigned();
+            $table->unsignedBigInteger('sale_id');
             $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('product_sale');
     }
-}
+};

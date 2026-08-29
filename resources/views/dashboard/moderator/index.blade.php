@@ -2,7 +2,7 @@
 
 
 @section('content')
-@include('sweet::alert')
+@include('sweetalert::alert')
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header with-border">
@@ -77,8 +77,8 @@
                                             @lang('site.delete')</button>
                                         <form id="form-delete-{{ $moderators->id }}" action="{{ route('moderator.destroy', $moderators->id) }}"
                                             method="post" style="display:inline-block;">
-                                            {{ csrf_field() }}
-                                            {{ method_field('delete') }}
+                                            @csrf
+                                            @method('delete')
                                         </form>
                                         @else
                                         <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-user-times"></i>

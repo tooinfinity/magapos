@@ -2,7 +2,7 @@
 
 
 @section('content')
-@include('sweet::alert')
+@include('sweetalert::alert')
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header with-border">

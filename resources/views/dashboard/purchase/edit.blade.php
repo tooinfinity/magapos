@@ -12,8 +12,8 @@
         <div class="card-body" style="overflow-y:scroll;">
             <form action="{{ route('purchase.update', $purchase->id) }}" method="post">
 
-                {{ csrf_field() }}
-                {{ method_field('put') }}
+                @csrf
+                @method('put')
 
                 @include('partials._errors')
                 <div class="row">
@@ -143,8 +143,8 @@
                             </button>
                         </div>
                         <form id="new_provider" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            {{ method_field('post') }}
+                            @csrf
+                            @method('post')
                             @include('partials._errors')
                             <div class="modal-body">
                                 <div class="row">

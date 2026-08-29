@@ -45,14 +45,15 @@ return [
         'en'          => ['name' => 'English',                'script' => 'Latn', 'native' => 'English', 'regional' => 'en_GB'],
         //'en-AU'       => ['name' => 'Australian English',     'script' => 'Latn', 'native' => 'Australian English', 'regional' => 'en_AU'],
         //'en-GB'       => ['name' => 'British English',        'script' => 'Latn', 'native' => 'British English', 'regional' => 'en_GB'],
+        //'en-CA'       => ['name' => 'Canadian English',       'script' => 'Latn', 'native' => 'Canadian English', 'regional' => 'en_CA'],
         //'en-US'       => ['name' => 'U.S. English',           'script' => 'Latn', 'native' => 'U.S. English', 'regional' => 'en_US'],
-        //'es'          => ['name' => 'Spanish',                'script' => 'Latn', 'native' => 'español', 'regional' => 'es_ES'],
+        'es'          => ['name' => 'Spanish',                'script' => 'Latn', 'native' => 'español', 'regional' => 'es_ES'],
         //'eo'          => ['name' => 'Esperanto',              'script' => 'Latn', 'native' => 'esperanto', 'regional' => ''],
         //'eu'          => ['name' => 'Basque',                 'script' => 'Latn', 'native' => 'euskara', 'regional' => 'eu_ES'],
         //'ewo'         => ['name' => 'Ewondo',                 'script' => 'Latn', 'native' => 'ewondo', 'regional' => ''],
         //'ee'          => ['name' => 'Ewe',                    'script' => 'Latn', 'native' => 'eʋegbe', 'regional' => ''],
         //'fil'         => ['name' => 'Filipino',               'script' => 'Latn', 'native' => 'Filipino', 'regional' => 'fil_PH'],
-        'fr'          => ['name' => 'French',                 'script' => 'Latn', 'native' => 'français', 'regional' => 'fr_FR'],
+        //'fr'          => ['name' => 'French',                 'script' => 'Latn', 'native' => 'français', 'regional' => 'fr_FR'],
         //'fr-CA'       => ['name' => 'Canadian French',        'script' => 'Latn', 'native' => 'français canadien', 'regional' => 'fr_CA'],
         //'fy'          => ['name' => 'Western Frisian',        'script' => 'Latn', 'native' => 'frysk', 'regional' => 'fy_DE'],
         //'fur'         => ['name' => 'Friulian',               'script' => 'Latn', 'native' => 'furlan', 'regional' => 'fur_IT'],
@@ -235,7 +236,7 @@ return [
         //'he'          => ['name' => 'Hebrew',                 'script' => 'Hebr', 'native' => 'עברית', 'regional' => 'he_IL'],
         //'ug'          => ['name' => 'Uyghur',                 'script' => 'Arab', 'native' => 'ئۇيغۇرچە', 'regional' => 'ug_CN'],
         //'ur'          => ['name' => 'Urdu',                   'script' => 'Arab', 'native' => 'اردو', 'regional' => 'ur_PK'],
-        'ar'          => ['name' => 'Arabic',                 'script' => 'Arab', 'native' => 'العربية', 'regional' => 'ar_AE'],
+        //'ar'          => ['name' => 'Arabic',                 'script' => 'Arab', 'native' => 'العربية', 'regional' => 'ar_AE'],
         //'uz-Arab'     => ['name' => 'Uzbek (Arabic)',         'script' => 'Arab', 'native' => 'اۉزبېک', 'regional' => ''],
         //'tg-Arab'     => ['name' => 'Tajik (Arabic)',         'script' => 'Arab', 'native' => 'تاجیکی', 'regional' => 'tg_TJ'],
         //'sd'          => ['name' => 'Sindhi',                 'script' => 'Arab', 'native' => 'سنڌي', 'regional' => 'sd_IN'],
@@ -289,8 +290,15 @@ return [
         //'tzm'         => ['name' => 'Central Atlas Tamazight (Tifinagh)','script' => 'Tfng', 'native' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ', 'regional' => ''],
         //'yue'         => ['name' => 'Yue',                    'script' => 'Hant', 'native' => '廣州話', 'regional' => 'yue_HK'],
         //'ja'          => ['name' => 'Japanese',               'script' => 'Jpan', 'native' => '日本語', 'regional' => 'ja_JP'],
-        //'zh'          => ['name' => 'Chinese (Simplified)',   'script' => 'Hans', 'native' => '简体中文', 'regional' => 'zh_CN'],
-        //'zh-Hant'     => ['name' => 'Chinese (Traditional)',  'script' => 'Hant', 'native' => '繁體中文', 'regional' => 'zh_CN'],
+        //'zh'          => ['name' => 'Chinese',   'script' => 'Hans', 'native' => '中文', 'regional' => 'zh_CN'],
+        //'zh_CN'       => ['name' => 'Simplified Chinese (Mainland China)',   'script' => 'Hans', 'native' => '简体中文（中国大陆）', 'regional' => 'zh_CN'],
+        //'zh_HK'       => ['name' => 'Traditional Chinese (Hong Kong)',  'script' => 'Hant', 'native' => '繁體中文（香港）', 'regional' => 'zh_HK'],
+        //'zh_MO'       => ['name' => 'Traditional Chinese (Macau)',  'script' => 'Hant', 'native' => '繁體中文（澳門）', 'regional' => 'zh_MO'],
+        //'zh_TW'       => ['name' => 'Traditional Chinese (Taiwan)',  'script' => 'Hant', 'native' => '正體中文（臺灣）', 'regional' => 'zh_TW'],
+        //'zh_MY'       => ['name' => 'Simplified Chinese (Malaysia)',   'script' => 'Hans', 'native' => '简体中文（马来西亚）', 'regional' => 'zh_MY'],
+        //'zh_SG'       => ['name' => 'Simplified Chinese (Singapore)',   'script' => 'Hans', 'native' => '简体中文（新加坡）', 'regional' => 'zh_SG'],
+        //'zh-Hans'     => ['name' => 'Chinese (Simplified)',   'script' => 'Hans', 'native' => '简体中文', 'regional' => 'zh_CN'],
+        //'zh-Hant'     => ['name' => 'Chinese (Traditional)',  'script' => 'Hant', 'native' => '繁體中文', 'regional' => 'zh_TW'],
         //'ii'          => ['name' => 'Sichuan Yi',             'script' => 'Yiii', 'native' => 'ꆈꌠꉙ', 'regional' => ''],
         //'vai'         => ['name' => 'Vai (Vai)',              'script' => 'Vaii', 'native' => 'ꕙꔤ', 'regional' => ''],
         //'jv-Java'     => ['name' => 'Javanese (Javanese)',    'script' => 'Java', 'native' => 'ꦧꦱꦗꦮ', 'regional' => ''],
@@ -308,7 +316,7 @@ return [
     // again if the session expires.
     //
     // If false, system will take app.php locale attribute
-    'useAcceptLanguageHeader' => false,
+    'useAcceptLanguageHeader' => true,
 
     // If `hideDefaultLocaleInURL` is true, then a url without locale
     // is identical with the same url with default locale.
@@ -317,7 +325,7 @@ return [
     //
     // If in addition the middleware `LaravelLocalizationRedirectFilter` is active, then
     // every url with default locale is redirected to url without locale.
-    // For example, `/en/about` would be redirected to `/en`.
+    // For example, `/en/about` would be redirected to `/about`.
     // It is recommended to use `hideDefaultLocaleInURL` only in
     // combination with the middleware `LaravelLocalizationRedirectFilter`
     // to avoid duplicate content (SEO).
@@ -332,7 +340,9 @@ return [
     //Example: 'localesOrder' => ['es','en'],
     'localesOrder' => [],
 
-    //  If you want to use custom lang url segments like 'at' instead of 'de-AT', you can use the mapping to tallow the LanguageNegotiator to assign the descired locales based on HTTP Accept Language Header. For example you want ot use 'at', so map HTTP Accept Language Header 'de-AT' to 'at' (['de-AT' => 'at']).
+    // If you want to use custom language URL segments like 'at' instead of 'de-AT', you can map them to allow the
+    // LanguageNegotiator to assign the desired locales based on HTTP Accept Language Header. For example, if you want
+    // to use 'at' instead of 'de-AT', you would map 'de-AT' to 'at' (ie. ['de-AT' => 'at']).
     'localesMapping' => [],
 
     // Locale suffix for LC_TIME and LC_MONETARY
@@ -343,4 +353,5 @@ return [
     // Defaults to []
     'urlsIgnored' => ['/skipped'],
 
+    'httpMethodsIgnored' => ['POST', 'PUT', 'PATCH', 'DELETE'],
 ];

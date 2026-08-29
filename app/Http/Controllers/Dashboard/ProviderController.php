@@ -2,118 +2,71 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Provider;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Provider;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProviderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $providers = Provider::all();
         return view('dashboard.provider.index', compact('providers'));
     }
 
-
-
-    public function purchasedetail($id)
+    public function purchasedetail(int $id): View
     {
-        //$allclients = Client::all();
-        $provider = Provider::find($id);
-        // $sales = Sale::all();
-        // foreach ($allclients as $key => $value) {
-        //     dd($value->sales->sum('due'));
-        // }
-        //dd($client->sales);
-
-
+        $provider = Provider::findOrFail($id);
         return view('dashboard.provider.purchasedetail', compact('provider'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function create(): View
     {
         return view('dashboard.provider.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): ?RedirectResponse
     {
         $request->validate([
             'provider_name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-
         ]);
+
         Provider::create($request->all());
         toast('Provider created Successfully', 'success', 'top-right');
-        if (!$request->ajax()) {
+        if (! $request->ajax()) {
             return redirect()->route('provider.index');
         }
+        return null;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Provider  $provider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Provider $provider)
+    public function show(Provider $provider): void
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Provider  $provider
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Provider $provider)
+    public function edit(Provider $provider): View
     {
         return view('dashboard.provider.edit', compact('provider'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Provider  $provider
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Provider $provider)
+    public function update(Request $request, Provider $provider): RedirectResponse
     {
         $request->validate([
             'provider_name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-
         ]);
+
         $provider->update($request->all());
         toast('Provider Updated Successfully', 'success', 'top-right');
         return redirect()->route('provider.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Provider  $provider
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Provider $provider)
+    public function destroy(Provider $provider): RedirectResponse
     {
         $provider->delete();
         toast('Provider deleted Successfully', 'error', 'top-right');

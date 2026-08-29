@@ -13,8 +13,8 @@
         <div class="card-body">
 
             <form action="{{ route('moderator.store') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                {{ method_field('post') }}
+                @csrf
+                @method('post')
                 @include('partials._errors')
                 <div class="row">
 

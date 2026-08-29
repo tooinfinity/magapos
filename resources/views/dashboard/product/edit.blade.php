@@ -13,8 +13,8 @@
         <div class="card-body">
 
             <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                {{ method_field('put') }}
+                @csrf
+                @method('put')
                 @include('partials._errors')
                 <div class="row">
                     <div class="col-md-6">

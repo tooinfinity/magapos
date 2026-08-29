@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/app.css">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Compiled and minified CSS -->
     <title>Login</title>
     <style>
@@ -52,8 +52,8 @@
                 <br>
                 @include('partials._errors')
                 <form action="{{ route('login') }}" method="post">
-                    {{ csrf_field() }}
-                    {{ method_field('post') }}
+                    @csrf
+                    @method('post')
                     <div class="input-group mb-3">
                         <input class="form-control" placeholder="Enter Your Email" type="email" name="email" id="email">
                         <div class="input-group-append">
@@ -82,7 +82,7 @@
 
     </div>
 
-    <script src="/js/app.js"></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Compiled and minified JavaScript -->
     <script src="/js/materialize.min.js"></script>
 </body>

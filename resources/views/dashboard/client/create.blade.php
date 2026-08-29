@@ -13,8 +13,8 @@
         <div class="card-body">
 
             <form action="{{ route('client.store') }}" method="post">
-                {{ csrf_field() }}
-                {{ method_field('post') }}
+                @csrf
+                @method('post')
                 @include('partials._errors')
                 <div class="row">
                     <div class="col-md-6">

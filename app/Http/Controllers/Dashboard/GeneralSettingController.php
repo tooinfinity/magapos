@@ -2,126 +2,83 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Product;
-use App\GeneralSetting;
-use Milon\Barcode\DNS1D;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\GeneralSetting;
+use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\View\View;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
+use Intervention\Image\ImageManager;
 
 class GeneralSettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(GeneralSetting $generalSetting)
+    public function index(GeneralSetting $generalSetting): View
     {
         $products = Product::all();
-
         return view('dashboard.settings.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): void
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'store_name' => 'required',
-            'activity' =>'required',
-            'phone'=>'required',
+            'activity' => 'required',
+            'phone' => 'required',
             'address' => 'required',
             'start_day' => 'required',
             'image' => 'image',
             'investment_capital' => 'required',
         ]);
+
         $id = $request->input('id');
         $general_setting = GeneralSetting::findOrFail($id);
         $request_data = $request->all();
+
         if ($request->image) {
             if ($general_setting->image != 'logo_default.png') {
-                Storage::disk('public_uploads')->delete(
-                    '/settings/' . $general_setting->image
-                );
+                Storage::disk('public_uploads')->delete('/settings/' . $general_setting->image);
             }
-            Image::make($request->image)
+            $manager = new ImageManager(new GdDriver());
+            $manager->make($request->image->getRealPath())
                 ->resize(160, 160, function ($constraint) {
                     $constraint->aspectRatio();
                 })
-                ->save(
-                    public_path(
-                        'uploads/settings/' . $request->image->hashName()
-                    )
-                );
+                ->save(public_path('uploads/settings/' . $request->image->hashName()));
             $request_data['image'] = $request->image->hashName();
         }
+
         $general_setting->update($request_data);
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\GeneralSetting  $generalSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(GeneralSetting $generalSetting)
+    public function show(GeneralSetting $generalSetting): void
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\GeneralSetting  $generalSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(GeneralSetting $generalSetting)
-    {
-        //
-
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\GeneralSetting  $generalSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, GeneralSetting $generalSetting)
+    public function edit(GeneralSetting $generalSetting): void
     {
         //
     }
 
-    public function updatesetting(Request $request)
-    { }
+    public function update(Request $request, GeneralSetting $generalSetting): void
+    {
+        //
+    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\GeneralSetting  $generalSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(GeneralSetting $generalSetting)
+    public function updatesetting(Request $request): void
+    {
+        //
+    }
+
+    public function destroy(GeneralSetting $generalSetting): void
     {
         //
     }
