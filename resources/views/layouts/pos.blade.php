@@ -8,11 +8,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Store LTE</title>
-    <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/custom.css">
-    <link rel="stylesheet" href="/css/select2.min.css">
-    <link rel="stylesheet" href="/css/jquery.bootstrap-touchspin.min.css">
+    <title>MagaPOS</title>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" />
 
@@ -62,15 +59,8 @@
 
     <!-- REQUIRED SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="/js/app.js"></script>
     @yield('script')
-    <script src="/js/select2.min.js"></script>
-    {{-- <script src="/js/jquery.bootstrap-touchspin.min.js"></script> --}}
-    <script src="/js/moment.js"></script>
-    <script src="/js/sale.js"></script>
-    <script src="/js/img-preview.js"></script>
-    <script src="/js/onscan.min.js"></script>
-    <script src="/js/jquery.nicescroll.min.js"></script>
+    @vite(['resources/js/sale.js', 'resources/js/img-preview.js'])
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>

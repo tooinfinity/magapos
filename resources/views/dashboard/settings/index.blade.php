@@ -2,7 +2,7 @@
 
 
 @section('content')
-@include('sweet::alert')
+@include('sweetalert::alert')
 <div class="col-md-12">
     {{--  Start General Settings card  --}}
     <div class="card card-primary">
@@ -15,8 +15,8 @@
 
             <form id="update_settings" action="{{ route('generalsetting.store') }}" method="POST"
                 enctype="multipart/form-data">
-                {{ csrf_field() }}
-                {{ method_field('post') }}
+                @csrf
+                @method('post')
                 @include('partials._errors')
                 <div class="row">
                     <div class="col-md-6">

@@ -2,124 +2,71 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Sale;
-use App\Client;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Client;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
-        //$allclients = Client::all();
         $clients = Client::all();
-        // $sales = Sale::all();
-        // foreach ($allclients as $key => $value) {
-        //     dd($value->sales->sum('due'));
-        // }
-
         return view('dashboard.client.index', compact('clients'));
     }
 
-
-    public function saledetail($id)
+    public function saledetail(int $id): View
     {
-        //$allclients = Client::all();
-        $client = Client::find($id);
-        // $sales = Sale::all();
-        // foreach ($allclients as $key => $value) {
-        //     dd($value->sales->sum('due'));
-        // }
-        //dd($client->sales);
-
-
+        $client = Client::findOrFail($id);
         return view('dashboard.client.saledetail', compact('client'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function create(): View
     {
         return view('dashboard.client.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): ?RedirectResponse
     {
         $request->validate([
             'client_name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-
         ]);
+
         Client::create($request->all());
         toast('Client created Successfully', 'success', 'top-right');
-        if (!$request->ajax()) {
+        if (! $request->ajax()) {
             return redirect()->route('client.index');
         }
+        return null;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Client $client)
+    public function show(Client $client): void
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client)
+    public function edit(Client $client): View
     {
         return view('dashboard.client.edit', compact('client'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Client $client): RedirectResponse
     {
         $request->validate([
             'client_name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-
         ]);
+
         $client->update($request->all());
         toast('Client Updated Successfully', 'success', 'top-right');
         return redirect()->route('client.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Client $client)
+    public function destroy(Client $client): RedirectResponse
     {
         $client->delete();
         toast('Client deleted Successfully', 'error', 'top-right');

@@ -1,93 +1,89 @@
-# Piont of Sale (pos) 
+# MagaPOS - Point of Sale
 
-pos is project based on laravel framework 5.7 with AdminLTE 3  dashboard to manage your store
+MagaPOS is a point-of-sale application built with **Laravel 12** and **AdminLTE 3** to manage your store: products, categories, clients, providers, sales, purchases, spendings, money box, and user roles.
 
+> Upgraded from Laravel 5.7 to Laravel 12 with PHP 8.4 compatibility.
+
+## Requirements
+
+- PHP 8.4 or higher
+- Composer 2.x
+- Node.js 20+ and npm
+- SQLite (default) or MySQL/PostgreSQL
 
 ## Installation
 
-After  all you need to setup your environment for php and database for that i use [___Laragon___](https://sourceforge.net/projects/laragon/files/releases/4.0/laragon-wamp.exe/download) 
+### 1. Clone the repository
 
-you need also [___Composer___](https://getcomposer.org/) Dependency Manager for PHP
-and [___git___](https://git-scm.com/)  control system 
+```bash
+git clone https://github.com/tooinfinity/magapos.git
+cd magapos
+```
 
-### 1 - ___Clone Github repo for this project locally___
-- go to [___Gitthub___](https://github.com/) website and login or register to an account
-- go to your Terminal and look for folder __Laragon__ and sub folder __www__ and run this command
+### 2. Install PHP dependencies
 
-        git clone https://github.com/tooinfinity/magapos.git
-  
-  this ask to login to __bitbucket__ put you username and password 
-- wait until finiched setting up
+```bash
+composer install
+```
 
-### 2 - ___Install Composer Dependencies___
- Open your terminal go to your project directory and run this command 
+### 3. Install JS dependencies and build assets
 
-        composer install
-this command install all dependency of laravel in your project
+```bash
+npm install --ignore-scripts
+npm run build
+```
 
-### 3 - ___Install npm Dependencies___
- Open your terminal go to your project directory and run this command 
+### 4. Configure environment
 
-        npm install
-this command install all dependency of laravel in your project
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-<-- you need to install [___NodeJs___](https://nodejs.org/en/) in your pc to get __npm__ command run  -->
+### 5. Create the database and run migrations
 
-### 4 - ___Create a copy of your .env file___
-        cp .env.example .env
+For SQLite (default):
 
-This will create a copy of the .env.example file in your project and name the copy simply .env
+```bash
+touch database/database.sqlite
+php artisan migrate:fresh --seed
+```
 
-### 5 - ___Generate an app encryption key___
-Laravel requires you to have an app encryption key which is generally randomly generated and stored in your .env file Do that with this command
+For MySQL, set the `DB_*` values in `.env`, then:
 
-        php artisan key:generate
+```bash
+php artisan migrate:fresh --seed
+```
 
-### 6 - ___Create an empty database for our application___
-Create an empty database for your project using the database tools you prefer (heidiSQL)
+### 6. Start the dev server
 
-### 7 - ___In the .env file, add database information to allow Laravel to connect to the database___
-In the .env file fill in the
+```bash
+php artisan serve
+```
 
-        DB_CONNECTION=mysql
-        DB_HOST=127.0.0.1
-        DB_PORT=3306
-        DB_DATABASE=your database name
-        DB_USERNAME=your database username
-        DB_PASSWORD=your database password
+Visit `http://127.0.0.1:8000`.
 
-options to match the credentials of the database you just created. This will allow us to run migrations and seed the database in the next step.
+**Default credentials:** `admin@magapos.app` / `password`
 
-### 8 - ___Migrate and Seed the database___
-Once your credentials are in the .env file, now you can migrate your database.
+## Packages used
 
-run this separately with two command
+- [Laratrust](https://github.com/santigarcor/laratrust) — Roles & permissions
+- [mcamara/laravel-localization](https://github.com/mcamara/laravel-localization) — i18n route prefixes
+- [realrashid/sweet-alert](https://github.com/realrashid/sweet-alert) — SweetAlert2 toast notifications
+- [Spatie Laravel HTML](https://github.com/spatie/laravel-html) — Form & HTML builder
+- [Intervention Image](https://image.intervention.io/) — Image manipulation
+- [Milon Barcode](https://github.com/milon/barcode) — Barcode generation
+- [Laravel UI](https://github.com/laravel/ui) — Bootstrap auth scaffolding
 
-__Migrate :__
+## NPM packages
 
-        php artisan migrate
+- [AdminLTE 3](https://adminlte.io/) — Dashboard template
+- [FontAwesome Free](https://fontawesome.com/) — Icons
+- [iCheck](https://github.com/fronteed/icheck) — Custom checkboxes
+- [JsBarcode](https://github.com/lindell/JsBarcode) — Client-side barcode rendering
+- [OnScan.js](https://github.com/axenox/onscan.js) — Hardware barcode scanner
+- [Noty](https://github.com/needim/noty) — Notifications
 
-__Seed :__
-
-        php artisan db:seed
-__do that with one command :__
-
-        php artisan migrate:fresh seed
-
-
-## Packages used on this Project
-  -  [___Laratrust___](https://github.com/santigarcor/laratrust) (Laravel 5 Package)
-  -  [___laravel-localization___](https://github.com/mcamara/laravel-localization) Easy localization for Laravel by mcamara
-  -  [___SweetAlert2___](https://github.com/realrashid/sweet-alert) for Laravel 5.x by Rashid Ali
-  -  [___Intervention Image___](http://image.intervention.io/getting_started/installation)  PHP image handling and manipulation
-  -  __.....__
-
-## NPM Packages used on this Project
-  -  [___AdminLTE3___](https://adminlte.io/docs/2.4/installation)  Dashboard Template
-  -  [___fontawesome-free___](https://github.com/realrashid/sweet-alert) Font Icon Template
-  -  [___Select2.js___](https://select2.org/) a customizable select box
-  -  [___OnScan.js___](https://github.com/axenox/onscan.js) On-scan events for hardware barcode scanners in vanilla JS
-  -  __.....__
 ## Todo List featured
   - [ ] create a backup and restore for this application
   - [ ] create printing system for my app

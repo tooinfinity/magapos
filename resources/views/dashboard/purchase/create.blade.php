@@ -12,8 +12,8 @@
         <div class="card-body" style="overflow-y:scroll;">
             <form action="{{ route('purchase.store') }}" method="post">
 
-                {{ csrf_field() }}
-                {{ method_field('post') }}
+                @csrf
+                @method('post')
 
                 @include('partials._errors')
                 <div class="row">
@@ -130,8 +130,8 @@
                             </button>
                         </div>
                         <form id="new_provider" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            {{ method_field('post') }}
+                            @csrf
+                            @method('post')
                             @include('partials._errors')
                             <div class="modal-body">
                                 <div class="row">
@@ -225,8 +225,8 @@
                                         </button>
                                     </div>
                                     <form enctype="multipart/form-data" id="new_product">
-                                        {{ csrf_field() }}
-                                        {{ method_field('post') }}
+                                        @csrf
+                                        @method('post')
                                         <div id="form-messages" class="alert success" role="alert"
                                             style="display: none;"></div>
                                         <div class="modal-body">
@@ -349,8 +349,8 @@
                                 </button>
                             </div>
                             <form enctype="multipart/form-data" id="update_product_price">
-                                {{ csrf_field() }}
-                                {{ method_field('post') }}
+                                @csrf
+                                @method('post')
                                 <div class="modal-body">
                                     @include('partials._errors')
                                     <input type="hidden" name="id" id="id">

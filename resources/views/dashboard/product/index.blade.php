@@ -2,7 +2,7 @@
 
 
 @section('content')
-@include('sweet::alert')
+@include('sweetalert::alert')
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header with-border">
@@ -123,8 +123,8 @@
                                     <form id="form-delete-{{ $product->id }}"
                                         action="{{ route('product.destroy', $product->id) }}" method="post"
                                         style="display:inline-block;">
-                                        {{ csrf_field() }}
-                                        {{ method_field('delete') }}
+                                        @csrf
+                                        @method('delete')
                                     </form>
                                     @else
                                     <button type="submit" class="btn btn-danger btn-sm disabled"><i

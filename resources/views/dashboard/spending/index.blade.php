@@ -6,7 +6,7 @@
 
 
 @section('content')
-@include('sweet::alert')
+@include('sweetalert::alert')
 {{-- spending row  --}}
 <div class="col-md-12">
     <div class="card card-primary">
@@ -29,8 +29,8 @@
                                 </button>
                             </div>
                             <form id="new_spend">
-                                {{ csrf_field() }}
-                                {{ method_field('post') }}
+                                @csrf
+                                @method('post')
                                 @include('partials._errors')
                                 <div class="modal-body">
                                     <div class="col-md-8 text-dark">
@@ -113,8 +113,8 @@
                                         <form id="form-delete-{{ $spending->id }}"
                                             action="{{ route('spending.destroy', $spending->id) }}" method="post"
                                             style="display:inline-block;">
-                                            {{ csrf_field() }}
-                                            {{ method_field('delete') }}
+                                            @csrf
+                                            @method('delete')
                                         </form>
                                         @else
                                         <button type="submit" class="btn btn-danger btn-sm disabled"><i
@@ -155,8 +155,8 @@
                             </button>
                         </div>
                         <form id="update_spend">
-                            {{ csrf_field() }}
-                            {{ method_field('put') }}
+                            @csrf
+                            @method('put')
                             @include('partials._errors')
                             <div class="modal-body">
                                 <div class="col-md-8 text-dark">

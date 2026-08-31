@@ -63,7 +63,7 @@ return [
     'createprovider' => "ِCreate Fournisseur",
     'providername' => "Fournisseur Name",
     'editprovider' => "Edit Fournisseur",
-    'updatecprovider' => "Update Fournisseur",
+    'updateprovider' => "Update Fournisseur",
 
     //product view translate to frensh
     'createproduct' => "Créer un produit",

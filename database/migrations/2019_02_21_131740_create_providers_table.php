@@ -1,39 +1,29 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateProvidersTable extends Migration
+return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('providers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('provider_name');
             $table->string('phone');
             $table->string('address');
             $table->string('description')->nullable();
             $table->string('rc')->nullable();
-            $table->integer('article')->nullable();
-            $table->integer('nif')->nullable();
-            $table->integer('nis')->nullable();
+            $table->string('article')->nullable();
+            $table->string('nif')->nullable();
+            $table->string('nis')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('providers');
     }
-}
+};

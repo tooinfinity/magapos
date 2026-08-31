@@ -1,28 +1,4 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-$fa-font-path:"../webfonts";
-
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-// Admin-lte
-@import '~admin-lte/dist/css/adminlte.css';
-// Ichecked
-@import '~icheck/skins/all.css';
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
-@import "~@fortawesome/fontawesome-free/scss/solid.scss";
-@import "~@fortawesome/fontawesome-free/scss/brands.scss";
-// NOTY notification
-@import "~noty/src/noty.scss";
-@import "~noty/src/themes/mint.scss";
-
-
-.navbar-laravel {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+// AdminLTE 3 + Bootstrap 4 + dependencies
+@import 'admin-lte/dist/css/adminlte.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import 'icheck/skins/square/red.css';
